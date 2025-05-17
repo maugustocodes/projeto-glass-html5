@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">  <!-- Adicionei o idioma -->
+<head>  
+    <title>Lâmpada Inteligente</title>
+    <meta charset="UTF-8"/>
+    <style>
+        img { cursor: pointer; }  /* Mostra que a lâmpada é clicável */
+    </style>
+    <script>
+        var quebrada = false;
+        function mudaLampada(tipo) {
+            if (quebrada) return;  // Sai da função se já estiver quebrada
+            
+            document.getElementById("luz").src = "_imagens/" + tipo + ".jpg";
+            
+            if (tipo === 'lampada-quebrada') {
+                quebrada = true;
+                // Opcional: Desativa visualmente os eventos de mouse
+                document.getElementById("luz").style.opacity = "0.8";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Acenda a Lâmpada</h1>
+    <img 
+        src="_imagens/lampada-apagada.jpg" 
+        id="luz" 
+        onmousemove="mudaLampada('lampada-acesa')" 
+        onmouseout="mudaLampada('lampada-apagada')" 
+        onclick="mudaLampada('lampada-quebrada')"
+    />
+    <!-- Botão para resetar (opcional) -->
+    <button onclick="quebrada=false; mudaLampada('lampada-apagada')">
+        Consertar Lâmpada
+    </button>
+</body>
+</html>
